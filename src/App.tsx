@@ -6,9 +6,11 @@ import Card from "./components/Card/card";
 import { toggle } from "./App/slices/bookmarks/BookmarksSlice";
 import { useAppDispatch, useAppSelector } from "./App/hooks";
 import { setRating } from "./App/slices/Rating/Rating.slice";
+import Modal from "./components/Modal/modal";
 
 function App() {
   const [count, setCount] = useState(3);
+  const [showModal, setShowModal] = useState(false);
   const { data, isFetching, error } = useGetBooksQuery(20);
   const dispatch = useAppDispatch();
   const ratings = useAppSelector((state) => state.ratings);
@@ -32,6 +34,8 @@ function App() {
   return (
     <div>
       <div>
+        <button onClick={() => setShowModal(!showModal)}>Show Modal</button>
+        {showModal ? <Modal title={""} author={""} image={""} /> : <br />}
         {data.data.slice(0, `${count}`).map(
           (book: {
             id: number;
