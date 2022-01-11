@@ -29,6 +29,10 @@ function App() {
               title={book.title}
               author={book.author}
               image={book.image}
+              bookmarked={false}
+              handleClick={function (): void {
+                throw new Error("Function not implemented.");
+              }}
             />
           )
         )}

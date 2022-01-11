@@ -6,7 +6,9 @@ export const bookmarksSlice = createSlice({
   name: "bookmarks",
   initialState,
   reducers: {
-    toggle,
+    toggle(state, action) {
+      console.log(action);
+    },
   },
 });
 
