@@ -5,15 +5,21 @@ import { useGetBooksQuery } from "./App/slices/booksApi/BooksApiSlice";
 import Card from "./components/Card/card";
 import { toggle } from "./App/slices/bookmarks/BookmarksSlice";
 import { useAppDispatch, useAppSelector } from "./App/hooks";
+import { setRating } from "./App/slices/Rating/Rating.slice";
 
 function App() {
   const [count, setCount] = useState(3);
   const { data, isFetching, error } = useGetBooksQuery(20);
   const dispatch = useAppDispatch();
+  const ratings = useAppSelector((state) => state.ratings);
   const bookmarks = useAppSelector((state) => state.bookmarks);
 
   function handleClick(id: number) {
     dispatch(toggle(id));
+  }
+
+  function handleChange(id: number, rating: number) {
+    dispatch(setRating({ id, rating }));
   }
 
   if (isFetching) {
@@ -41,6 +47,16 @@ function App() {
               image={book.image}
               bookmarked={bookmarks.includes(book.id)}
               handleClick={() => handleClick(book.id)}
+              rating={
+                ratings.findIndex((rating) => rating.id === book.id)
+                  ? ratings[
+                      ratings.findIndex((rating) => rating.id === book.id)
+                    ]
+                  : 0
+              }
+              handleChange={(event: any) =>
+                handleChange(book.id, Number(event.target.value))
+              }
             />
           )
         )}
