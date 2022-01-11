@@ -1,11 +1,19 @@
 import { useState } from "react";
 import "./App.css";
+import { bookmarksSlice } from "./App/slices/bookmarks/BookmarksSlice";
 import { useGetBooksQuery } from "./App/slices/booksApi/BooksApiSlice";
 import Card from "./components/Card/card";
+import { toggle } from "./App/slices/bookmarks/BookmarksSlice";
+import { useAppDispatch } from "./App/hooks";
 
 function App() {
   const [count, setCount] = useState(3);
   const { data, isFetching, error } = useGetBooksQuery(20);
+  const dispatch = useAppDispatch();
+
+  function handleClick(id: number) {
+    dispatch(toggle(id));
+  }
 
   if (isFetching) {
     return <p>Waiting for Data fetch to complete!</p>;
@@ -19,6 +27,7 @@ function App() {
       <div>
         {data.data.slice(0, `${count}`).map(
           (book: {
+            id: number;
             isbn: string; //Isbn als key nehmen - da api die id jedes mal wechselt
             title: string;
             image: string;
@@ -30,9 +39,7 @@ function App() {
               author={book.author}
               image={book.image}
               bookmarked={false}
-              handleClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
+              handleClick={() => handleClick(book.id)}
             />
           )
         )}

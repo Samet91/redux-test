@@ -6,11 +6,11 @@ export const bookmarksSlice = createSlice({
   name: "bookmarks",
   initialState,
   reducers: {
-    toggle(state, action) {
-      console.log(action);
+    toggle(state = initialState, action) {
+      return (state = [...state, action.payload]); // neue state ist siehe klammern
     },
   },
 });
 
-export const {} = bookmarksSlice.actions; // nimm methode xy die sich auf eine action im slice bezieht
+export const {toggle} = bookmarksSlice.actions; // nimm methode xy die sich auf eine action im slice bezieht
 export default bookmarksSlice.reducer;
