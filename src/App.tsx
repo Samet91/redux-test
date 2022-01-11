@@ -4,12 +4,13 @@ import { bookmarksSlice } from "./App/slices/bookmarks/BookmarksSlice";
 import { useGetBooksQuery } from "./App/slices/booksApi/BooksApiSlice";
 import Card from "./components/Card/card";
 import { toggle } from "./App/slices/bookmarks/BookmarksSlice";
-import { useAppDispatch } from "./App/hooks";
+import { useAppDispatch, useAppSelector } from "./App/hooks";
 
 function App() {
   const [count, setCount] = useState(3);
   const { data, isFetching, error } = useGetBooksQuery(20);
   const dispatch = useAppDispatch();
+  const bookmarks = useAppSelector((state) => state.bookmarks);
 
   function handleClick(id: number) {
     dispatch(toggle(id));
@@ -38,7 +39,7 @@ function App() {
               title={book.title}
               author={book.author}
               image={book.image}
-              bookmarked={false}
+              bookmarked={bookmarks.includes(book.id)}
               handleClick={() => handleClick(book.id)}
             />
           )
