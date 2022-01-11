@@ -7,9 +7,11 @@ export const BooksApiSlice = createApi({
   }),
   endpoints: (builder) => ({
     getBooks: builder.query({
+      //currywurst..
       query: (quantity) => `/?_quantity=${quantity}`,
     }),
   }),
 });
 
 export const { useGetBooksQuery } = BooksApiSlice;
+//er baut es für uns automatisch..
