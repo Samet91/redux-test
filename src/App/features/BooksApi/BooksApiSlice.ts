@@ -7,7 +7,9 @@ export const BooksApiSlice = createApi({
   }),
   endpoints: (builder) => ({
     getBooks: builder.query({
-      query: (quantity = 20) => `/?_quantity=${quantity}`,
+      query: (quantity) => `/?_quantity=${quantity}`,
     }),
   }),
 });
+
+export const { useGetBooksQuery } = BooksApiSlice;
