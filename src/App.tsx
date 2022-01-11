@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { useGetBooksQuery } from "./App/features/booksApi/BooksApiSlice";
+import { useGetBooksQuery } from "./App/slices/booksApi/BooksApiSlice";
 import Card from "./components/Card/card";
 
 function App() {

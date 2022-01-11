@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import bookmarkreducer from "./features/bookmarks/BookmarksSlice";
-import { BooksApiSlice } from "./features/booksApi/BooksApiSlice";
+import bookmarkreducer from "./slices/bookmarks/BookmarksSlice";
+import { BooksApiSlice } from "./slices/booksApi/BooksApiSlice";
 
 export const store = configureStore({
   reducer: {
