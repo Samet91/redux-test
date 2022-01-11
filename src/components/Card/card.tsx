@@ -1,4 +1,5 @@
 import classes from "./card.module.css";
+import {} from "react-icons/ai";
 
 type cardProps = {
   title: string;

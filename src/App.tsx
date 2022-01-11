@@ -1,9 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import {
-  BooksApiSlice,
-  useGetBooksQuery,
-} from "./App/features/BooksApi/BooksApiSlice";
+import { useGetBooksQuery } from "./App/features/BooksApi/BooksApiSlice";
 import Card from "./components/Card/card";
 
 function App() {
